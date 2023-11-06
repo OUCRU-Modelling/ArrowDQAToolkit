@@ -6,6 +6,6 @@ test_that("Test pipe",{
   dummy_dataframe <- as.data.frame(first_col, second_col)
   dummy_data <- as_arrow_table(dummy_dataframe)
   
-  expect_no_error(dummy_data %>% util_compute_distincts(c("first_col")))
+  expect_no_error(dummy_data %>% util_compute_duplicates(c("first_col")))
   
 })

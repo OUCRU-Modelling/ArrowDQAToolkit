@@ -23,7 +23,7 @@ int_duplicates <- function(data, check_all=TRUE, remove_dups=FALSE, cross_item_m
   if(check_all){
     all_vars <- data$ColumnNames()
     is_duplicates <- data %>% 
-      util_compute_distincts(all_vars)
+      util_compute_duplicates(all_vars)
     
     n_dups <- length(which(is_duplicates))
     
@@ -45,7 +45,7 @@ int_duplicates <- function(data, check_all=TRUE, remove_dups=FALSE, cross_item_m
       variables_comb <- str_split(multivariate_vars[row, "variables"], " \\| ")[[1]]
 
       is_duplicates <-  data %>% 
-        util_compute_distincts(variables_comb)
+        util_compute_duplicates(variables_comb)
       
       # get number of duplicates
       n_dups <- length(which(is_duplicates))

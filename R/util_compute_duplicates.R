@@ -9,7 +9,7 @@
 #'
 #' @examples
 
-util_compute_distincts <- function(data, vars){
+util_compute_duplicates <- function(data, vars){
   
   no_rows <- data$num_rows 
   
@@ -32,6 +32,7 @@ util_compute_distincts <- function(data, vars){
   concat_vars <- str_c(vars, sep=",", collapse = ",")
   concat_exp <- str_interp("data %>% 
                            mutate(combined = paste(${concat_vars}, sep=\"\")) %>% 
+                           select(combined) %>% 
                            compute()")
   combinations <- eval(parse_expr(concat_exp))
   
