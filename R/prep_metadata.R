@@ -84,7 +84,7 @@ prep_crossitem_metadata <- function(path=NULL){
   constraints <- as.data.table(read_excel(path=path, sheet=2))
   
   # --- Making sure all required columns are there
-  required_columns = c("variables", "label", "check_outlier","check_unique", "check_missing")
+  required_columns = c("variables", "label", "check_unique", "check_missing")
   required_constraint_colums = c("label", "contradiction", "rule")
   metadata_columns_1 = colnames(multivariate_vars)
   metadata_columns_2 = colnames(constraints)
