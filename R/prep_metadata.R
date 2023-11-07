@@ -101,7 +101,7 @@ prep_crossitem_metadata <- function(path=NULL){
   
   # --- Making sure all non-nullable columns contains value
   # get number of na in datatype
-  na_count <- colSums(is.na(multivariate_vars[, c("variables", "label", "check_outlier", "check_unique", "check_missing")]))
+  na_count <- colSums(is.na(multivariate_vars[, c("variables", "label", "check_unique", "check_missing")]))
   for (col in colnames(na_count)){
     if(!(na_count[col] == 0)){
       stop(str_interp("${col} for all variables in sheet 1 must be specified"))
@@ -116,7 +116,7 @@ prep_crossitem_metadata <- function(path=NULL){
   }
   
   # --- Convert columns with logical values to correct typing
-  bool_columns <- c("check_outlier", "check_unique", "check_missing")
+  bool_columns <- c("check_unique", "check_missing")
   for (col in bool_columns){
     multivariate_vars[[col]] <- as.logical(multivariate_vars[[col]])
   }
