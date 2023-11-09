@@ -16,10 +16,10 @@ prep_item_metadata <- function(path=NULL){
   
   if(is.null(path)){
     # default to current working directory if path is note provided
-    path = file.path(getwd(), "metadata", "item_level.xlsx")
+    path = file.path(getwd(), "item_level.xlsx")
   }else{
     # default to current working directory if path is note provided
-    path = file.path(path, "metadata", "item_level.xlsx")
+    path = file.path(path, "item_level.xlsx")
   }
   item_metadata <- as.data.table(read_excel(path=path, sheet=1))
   
@@ -74,10 +74,10 @@ prep_crossitem_metadata <- function(path=NULL){
   
   if(is.null(path)){
     # default to current working directory if path is note provided
-    path = file.path(getwd(), "metadata", "cross_item_level.xlsx")
+    path = file.path(getwd(), "cross_item_level.xlsx")
   }else{
     # default to current working directory if path is note provided
-    path = file.path(path, "metadata", "cross_item_level.xlsx")
+    path = file.path(path,  "cross_item_level.xlsx")
   }
   
   multivariate_vars <- as.data.table(read_excel(path=path, sheet=1))
