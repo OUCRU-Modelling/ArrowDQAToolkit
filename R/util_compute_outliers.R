@@ -4,7 +4,7 @@
 #' @param var - variable to calculate outlier, expected to be a numeric variable
 #'
 #' @import rlang arrow tidyverse
-#' @return
+#' @return arrow table containing outliers
 #' @export
 #'
 #' @examples

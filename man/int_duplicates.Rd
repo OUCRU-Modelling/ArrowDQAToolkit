@@ -2,8 +2,7 @@
 % Please edit documentation in R/int_duplicates.R
 \name{int_duplicates}
 \alias{int_duplicates}
-\title{Assess Integrity - duplication
-Check whether there are duplicate rows in pre-defined columns/variables}
+\title{Assess Integrity - duplication}
 \usage{
 int_duplicates(
   data,
@@ -30,9 +29,12 @@ int_duplicates(
 }}
 }
 \value{
-result data.frame
+list of 2 items
+\itemize{
+\item result: result summary data.frame
+\item duplicates: logical vector indicating whether each row is a duplicate
+}
 }
 \description{
-Assess Integrity - duplication
 Check whether there are duplicate rows in pre-defined columns/variables
 }

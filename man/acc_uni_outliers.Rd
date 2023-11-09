@@ -16,7 +16,9 @@ acc_uni_outliers(data, metadata)
 }}
 }
 \value{
-a result data.frame
+list of 2 items:
+result - result summary data.frame
+outliers - return outliers values for each variable
 }
 \description{
 check for univariate outliers

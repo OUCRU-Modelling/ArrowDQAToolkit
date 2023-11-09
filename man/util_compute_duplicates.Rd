@@ -15,6 +15,9 @@ util_compute_duplicates(data, vars)
 \item variables to check for duplicates
 }}
 }
+\value{
+logical vector indicating whether each row is a duplicate or not
+}
 \description{
 Utility to check each row whether they are duplicate or not
 }

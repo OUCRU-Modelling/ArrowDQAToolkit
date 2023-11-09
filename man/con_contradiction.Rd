@@ -17,7 +17,11 @@ con_contradiction(data, metadata)
 }}
 }
 \value{
-list containing result summary (data.frame) and contradicted data (tibble)
+list containing 2 items:
+\itemize{
+\item result summary (data.frame)
+\item contradicted data (tibble)
+}
 }
 \description{
 Assess Consistency - Value Contradiction

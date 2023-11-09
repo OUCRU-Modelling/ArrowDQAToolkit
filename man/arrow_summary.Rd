@@ -2,7 +2,7 @@
 % Please edit documentation in R/util_arrow_summarize.R
 \name{arrow_summary}
 \alias{arrow_summary}
-\title{Title}
+\title{Custom summary function for arrow object}
 \usage{
 arrow_summary(data, var, ...)
 }
@@ -18,5 +18,5 @@ arrow_summary(data, var, ...)
 \item{...}{}
 }
 \description{
-Title
+Custom summary function for arrow object
 }

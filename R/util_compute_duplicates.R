@@ -3,7 +3,7 @@
 #' @param data - arrow data table 
 #' @param vars - variables to check for duplicates
 #'
-#' @return
+#' @return logical vector indicating whether each row is a duplicate or not
 #' @import rlang arrow tidyverse 
 #' @export
 #'

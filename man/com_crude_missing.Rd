@@ -20,7 +20,7 @@ com_crude_missing(data, item_metadata, cross_item_metadata)
 }}
 }
 \value{
-result data.frame for univariate and multivariate missing
+2 data.frame for univariate and multivariate missingness result
 }
 \description{
 Assess Completeness - Crude Missing

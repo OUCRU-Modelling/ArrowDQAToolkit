@@ -13,6 +13,9 @@ util_compute_outliers(data, var)
 \item variable to calculate outlier, expected to be a numeric variable
 }}
 }
+\value{
+arrow table containing outliers
+}
 \description{
 Compute outliers
 }
