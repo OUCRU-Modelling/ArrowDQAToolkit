@@ -13,7 +13,7 @@
 #' @examples
 #' 
 con_label <- function(data, metadata, path=NULL){
-  path <- file.path(path, "metadata", "item_level.xlsx")
+  path <- file.path(path, "item_level.xlsx")
   
   # get variables with defined labels
   var_label <- as.data.frame(metadata[!is.na(labels), c("variable", "datatype", "labels")])
