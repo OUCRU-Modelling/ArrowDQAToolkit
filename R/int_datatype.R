@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @examples
-int_datatype <- function(data, metadata){
+int_datatype <- function(data, metadata, date_format=NULL){
   # test assumes that data is in arrow datatype
   var_type = as.data.frame(metadata[, c("variable", "datatype")])
   
@@ -74,8 +74,15 @@ int_datatype <- function(data, metadata){
       varname <- var_type[row, "variable"]
       # get defined type for variable
       type <- var_type[row, "datatype"]
-      
-      data[[varname]] <- data[[varname]]$cast(cast_type[[type]])
+
+      # special handling for date 
+      if(!is.null(date_format) & type == "datetime"){
+        # parse to specified date before casting
+        data[[varname]] <- parse_date_time(data[[varname]], date_format)
+      }else{
+        data[[varname]] <- data[[varname]]$cast(cast_type[[type]])
+      }
+
     })
   }
   
