@@ -77,11 +77,11 @@ int_datatype <- function(data, metadata, date_format=NULL){
 
       # special handling for date 
       if(!is.null(date_format) & type == "datetime"){
-        # parse to specified date before casting
+        # parse to timestamp based on defined format before casting to date32
         data[[varname]] <- parse_date_time(data[[varname]], date_format)
-      }else{
-        data[[varname]] <- data[[varname]]$cast(cast_type[[type]])
       }
+
+      data[[varname]] <- data[[varname]]$cast(cast_type[[type]])
 
     })
   }

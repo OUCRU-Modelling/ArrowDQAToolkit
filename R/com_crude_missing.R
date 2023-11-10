@@ -40,14 +40,14 @@ com_crude_missing <- function(data, item_metadata, cross_item_metadata){
     gc()
   }
   univariate_result <- data.frame(varname, no_missing, percentage)
-  print(univariate_result)
   
   # --- Check missingness for each multivariate 
   varnames <- character(0)
   no_missing <- character(0)
   percentage <- double()
   
-  for(row in 1:nrow(multivariate_vars)){
+  if (nrow(multivariate_vars) > 0){
+    for(row in 1:nrow(multivariate_vars)){
     curr_varnames <- multivariate_vars[row, "variables"]
     # split to get list of varnames
     curr_varnames <- str_replace_all(curr_varnames, " \\| ", " ")
@@ -67,6 +67,8 @@ com_crude_missing <- function(data, item_metadata, cross_item_metadata){
     no_missing <- append(no_missing, (str_interp("${curr_no_missing}/${no_data}")))
     percentage <- append(percentage, curr_no_missing/no_data)
   }
+  }
+
   multivariate_result <- data.frame(varnames, no_missing, percentage)
   
   result <- list("univariate_result"=univariate_result, "multivariate_result"=multivariate_result)

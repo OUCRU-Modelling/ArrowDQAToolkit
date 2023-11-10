@@ -22,32 +22,34 @@ com_qualified_missing <- function(data, metadata){
   no_missing <- character(0)
   percentage <- double()
   
-  for (row in 1:nrow(var_label)){
-    curr_varname <- var_label[row, "variable"]
-    labels <- var_label[row, "missing_labels"]
-    
-    # get missing labels
-    labels <- str_split(labels, " \\| ")[[1]]
-    
-    for (label in labels){
+  if(nrow(var_label) > 0){
+    for (row in 1:nrow(var_label)){
+      curr_varname <- var_label[row, "variable"]
+      labels <- var_label[row, "missing_labels"]
       
-      # get number of rows having label value
-      no_missing_query <- str_interp(
-        "data %>% dplyr::filter(${curr_varname} == ${label}) %>% compute() %>% nrow()"
-      )
-      if (var_label[row, "datatype"] == "string"){
+      # get missing labels
+      labels <- str_split(labels, " \\| ")[[1]]
+      
+      for (label in labels){
+        
+        # get number of rows having label value
         no_missing_query <- str_interp(
-          # special handling for string datatype
-          "data %>% dplyr::filter(${curr_varname} == \"${label}\") %>% compute() %>% nrow()"
+          "data %>% dplyr::filter(${curr_varname} == ${label}) %>% compute() %>% nrow()"
         )
+        if (var_label[row, "datatype"] == "string"){
+          no_missing_query <- str_interp(
+            # special handling for string datatype
+            "data %>% dplyr::filter(${curr_varname} == \"${label}\") %>% compute() %>% nrow()"
+          )
+        }
+        
+        curr_no_missing <- eval(parse_expr(no_missing_query))
+        
+        varname <- append(varname, curr_varname)
+        missing_label <- append(missing_label, label)
+        no_missing <- append(no_missing, str_interp("${curr_no_missing}/${no_data}"))
+        percentage <- append(percentage, curr_no_missing/no_data)
       }
-      
-      curr_no_missing <- eval(parse_expr(no_missing_query))
-      
-      varname <- append(varname, curr_varname)
-      missing_label <- append(missing_label, label)
-      no_missing <- append(no_missing, str_interp("${curr_no_missing}/${no_data}"))
-      percentage <- append(percentage, curr_no_missing/no_data)
     }
   }
     

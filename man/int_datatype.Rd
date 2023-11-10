@@ -4,7 +4,7 @@
 \alias{int_datatype}
 \title{Assess Integrity - Datatype \n}
 \usage{
-int_datatype(data, metadata)
+int_datatype(data, metadata, date_format = NULL)
 }
 \arguments{
 \item{data}{\itemize{

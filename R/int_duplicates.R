@@ -44,7 +44,8 @@ int_duplicates <- function(data, check_all=TRUE, remove_dups=FALSE, cross_item_m
     multivariate_vars <- cross_item_metadata$multivariate_vars[check_unique==TRUE,]
     multivariate_vars <- as.data.frame(multivariate_vars[,c("variables", "label")])
     
-    for (row in nrow(multivariate_vars)){
+    if(nrow(multivariate_vars) > 0){
+      for (row in 1:nrow(multivariate_vars)){
       variables_comb <- str_split(multivariate_vars[row, "variables"], " \\| ")[[1]]
 
       is_duplicates <-  data %>% 
@@ -60,8 +61,9 @@ int_duplicates <- function(data, check_all=TRUE, remove_dups=FALSE, cross_item_m
       # get multivariate label name
       label_name <- multivariate_vars[row, "label"]
       duplicates[[label_name]] <- is_duplicates
-    }
+      }
     
+    }
     # print(distinct_data)
     
     gc()
