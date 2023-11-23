@@ -26,14 +26,16 @@ con_contradiction <- function(data, metadata){
   
   # instantiate columns for return dataframe
   varname <- character(0)
-  rule_applied <- character(0)
+  rule <- character(0)
   no_contradict <- character(0)
   percentage <- double()
+  
+  # list of contradicted data for each rules
+  contradicted_dataset <- list()
   
   for (row in 1:nrow(joined)){
     variables <- joined[row, "variables"]
     
-    # evaluation <- str_extract_all(joined[row, "contradiction"], "<>|<=|>=|<|>")[[1]]
     variables_comb <- str_split(variables, " \\| ")[[1]]
     
     if (length(variables_comb) < 2){
@@ -41,12 +43,6 @@ con_contradiction <- function(data, metadata){
     }
     
     expression <- joined[row, "contradiction"]
-    
-    # format variable name in contradiction expression
-    # for(var in variables_comb){
-    #   expression <- str_replace_all(expression, var, str_interp("data$${var}"))
-    # }
-    # print(expression)
     
     # special handling for dates in expression
     dates <- str_extract_all(joined[row, "contradiction"], "\\d{2}/\\d{2}/\\d{4}")[[1]]
@@ -58,21 +54,31 @@ con_contradiction <- function(data, metadata){
     
     # --- Get contradicted data
     contradicted_data <- data
-    expression <- str_split(expression, "&&")[[1]]
-    for (exp in expression){
-      
-      exp <- str_interp("contradicted_data <- contradicted_data %>% dplyr::filter(${exp})")
-      # contradicted_data <- contradicted_data %>% dplyr::filter(eval(parse_expr(exp)))
-      
-      eval(parse_expr(exp))
-    }
+    # expression <- str_split(expression, "&&")[[1]]
+    # for (exp in expression){
+    #   
+    #   exp <- str_interp("contradicted_data <- contradicted_data %>% dplyr::filter(${exp})")
+    #   # contradicted_data <- contradicted_data %>% dplyr::filter(eval(parse_expr(exp)))
+    #   
+    #   eval(parse_expr(exp))
+    # }
     
+    # only treat expression as a single one
+    # must follow R convention
+    exp <- str_interp("contradicted_data <- contradicted_data %>% dplyr::filter(${expression})")
+    eval(parse_expr(exp))
+    
+    # --- Update result table
     varname <- append(varname, variables)
-    rule_applied <- append(rule_applied, joined["rule"])
+    rule <- append(rule, joined[row, "rule"])
     no_contradict <- append(no_contradict, str_interp("${nrow(contradicted_data)}/${no_data}"))
-    percentage <- append(percentage, (nrow(contradicted_data)/no_data))
+    percentage <- append(percentage, (nrow(contradicted_data)*100/no_data))
+    
+    # --- Update contradicted data for current rule 
+    contradicted_dataset[[joined[row, "label"]]] <- contradicted_data
   }
   
-  result <- data.frame(varname, rule_applied, no_contradict, percentage)
-  return(list("contradicted_data" = contradicted_data, "result" = result))
+  gc()
+  result <- data.frame(varname, rule, no_contradict, percentage)
+  return(list("contradicted_data" = contradicted_dataset, "result" = result))
 }

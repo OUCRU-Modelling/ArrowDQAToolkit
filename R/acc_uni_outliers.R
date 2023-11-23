@@ -53,7 +53,7 @@ acc_uni_outliers <- function(data, metadata){
     
     varnames <- append(varnames, var)
     no_outliers <- append(no_outliers, str_interp("${nrow(outliers)}/${n_data}"))
-    percentage <- append(percentage, (nrow(outliers)/(n_data)))
+    percentage <- append(percentage, (nrow(outliers)*100/(n_data)))
     var_outliers[[var]] <- outliers
     
     gc()

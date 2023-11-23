@@ -48,7 +48,7 @@ com_qualified_missing <- function(data, metadata){
         varname <- append(varname, curr_varname)
         missing_label <- append(missing_label, label)
         no_missing <- append(no_missing, str_interp("${curr_no_missing}/${no_data}"))
-        percentage <- append(percentage, curr_no_missing/no_data)
+        percentage <- append(percentage, curr_no_missing*100/no_data)
       }
     }
   }

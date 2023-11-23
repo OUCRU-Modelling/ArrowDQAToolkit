@@ -66,7 +66,7 @@ con_range <- function(data, metadata){
     varname <- append(varname, curr_varname)
     range <- append(range, var_range[row, "limit"])
     no_inconsistent_range <- append(no_inconsistent_range, str_interp("${no_inconsistent}/${no_data}"))
-    percentage_inconsistent <- append(percentage_inconsistent, no_inconsistent/no_data)
+    percentage_inconsistent <- append(percentage_inconsistent, no_inconsistent*100/no_data)
   }
   return(data.frame(varname,range, no_inconsistent_range, percentage_inconsistent))
 }

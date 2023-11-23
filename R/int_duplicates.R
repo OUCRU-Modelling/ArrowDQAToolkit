@@ -56,7 +56,7 @@ int_duplicates <- function(data, check_all=TRUE, remove_dups=FALSE, cross_item_m
       
       varnames <- append(varnames, multivariate_vars[row, "variables"])
       no_unique <- append(no_unique, str_interp("${no_data - n_dups}/${no_data}"))
-      percentage_duplicates <- append(percentage_duplicates, (n_dups/no_data))
+      percentage_duplicates <- append(percentage_duplicates, (n_dups*100/no_data))
       
       # get multivariate label name
       label_name <- multivariate_vars[row, "label"]

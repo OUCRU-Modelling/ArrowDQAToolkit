@@ -35,7 +35,7 @@ com_crude_missing <- function(data, item_metadata, cross_item_metadata){
     # append results to the list of varnames and missing values 
     varname <- append(varname, curr_varname)
     no_missing <- append(no_missing, (str_interp("${curr_no_missing}/${no_data}")))
-    percentage <- append(percentage, curr_no_missing/no_data)
+    percentage <- append(percentage, curr_no_missing*100/no_data)
     
     gc()
   }
@@ -65,7 +65,7 @@ com_crude_missing <- function(data, item_metadata, cross_item_metadata){
     
     varnames <- append(varnames, curr_varnames)
     no_missing <- append(no_missing, (str_interp("${curr_no_missing}/${no_data}")))
-    percentage <- append(percentage, curr_no_missing/no_data)
+    percentage <- append(percentage, curr_no_missing*100/no_data)
   }
   }
 

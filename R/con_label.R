@@ -62,7 +62,7 @@ con_label <- function(data, metadata, path=NULL){
     
     varname <- append(varname, curr_varname)
     no_inconsistent_label <- append(no_inconsistent_label, str_interp("${no_invalid_label}/${no_data}"))
-    percentage_inconsistent <- append(percentage_inconsistent, no_invalid_label/no_data)
+    percentage_inconsistent <- append(percentage_inconsistent, no_invalid_label*100/no_data)
     invalid_labels <- append(invalid_labels, paste(values_set - labels_set, collapse=", "))
     missing_labels <- append(missing_labels, paste(labels_set - values_set, collapse=", "))
     
