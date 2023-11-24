@@ -75,5 +75,6 @@ con_range <- function(data, metadata, plot_result = FALSE){
     print(util_graphing_percentage(result, varname, percentage = percentage_inconsistent,
                                    title = "Percentage of data with out-of-range values"))
   }
-  return()
+  
+  return(result)
 }

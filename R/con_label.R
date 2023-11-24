@@ -82,5 +82,6 @@ con_label <- function(data, metadata, path=NULL, plot_result = FALSE){
   }
   
   gc()
-  return()
+  
+  return(result)
 }
