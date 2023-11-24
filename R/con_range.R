@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-con_range <- function(data, metadata){
+con_range <- function(data, metadata, plot_result = FALSE){
   # whether values of column within specified range in metadata
   var_range <- metadata[!is.na(limit), c("variable", "datatype", "limit")]
   
@@ -68,5 +68,12 @@ con_range <- function(data, metadata){
     no_inconsistent_range <- append(no_inconsistent_range, str_interp("${no_inconsistent}/${no_data}"))
     percentage_inconsistent <- append(percentage_inconsistent, no_inconsistent*100/no_data)
   }
-  return(data.frame(varname,range, no_inconsistent_range, percentage_inconsistent))
+  
+  result <- data.frame(varname,range, no_inconsistent_range, percentage_inconsistent)
+  
+  if (plot_result){
+    print(util_graphing_percentage(result, varname, percentage = percentage_inconsistent,
+                                   title = "Percentage of data with out-of-range values"))
+  }
+  return()
 }

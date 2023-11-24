@@ -5,7 +5,7 @@
 \title{Assess Consistency - Value Contradiction
 Summarize how much data has contradicting values, and return the rows with contradicting values}
 \usage{
-con_contradiction(data, metadata)
+con_contradiction(data, metadata, plot_result = FALSE)
 }
 \arguments{
 \item{data}{\itemize{

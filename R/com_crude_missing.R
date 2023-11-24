@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-com_crude_missing <- function(data, item_metadata, cross_item_metadata){
+com_crude_missing <- function(data, item_metadata, cross_item_metadata, plot_result = FALSE){
   # list all variables in data 
   # load multivariate variable list and contradictions
   multivariate_vars <- cross_item_metadata[["multivariate_vars"]]
@@ -70,6 +70,11 @@ com_crude_missing <- function(data, item_metadata, cross_item_metadata){
   }
 
   multivariate_result <- data.frame(varnames, no_missing, percentage)
+  
+  if(plot_result){
+    print(util_graphing_percentage(univariate_result, varname, title = "Percentage of univariate missing"))
+    print(util_graphing_percentage(multivariate_result, varnames, title = "Percentage of multivariate missing"))
+  }
   
   result <- list("univariate_result"=univariate_result, "multivariate_result"=multivariate_result)
   return(result)

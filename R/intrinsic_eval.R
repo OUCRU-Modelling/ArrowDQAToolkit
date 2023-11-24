@@ -20,7 +20,8 @@ intrinsic_eval <- function(metadata_path, data){
   
   gc()
   print("--- Integrity - duplicates")
-  print(int_duplicates(data, cross_item_metadata=cross_item_metadata))
+  duplicate_result <- int_duplicates(data, cross_item_metadata=cross_item_metadata)
+  print(duplicate_result$result)
   
   gc()
   # --- Test code for consistency
@@ -29,17 +30,21 @@ intrinsic_eval <- function(metadata_path, data){
   print("--- Consistency - label variables")
   print(con_label(data, item_metadata, path=metadata_path))
   print("--- Consistency - value contradiction")
-  print(con_contradiction(data, cross_item_metadata))
+  contradiction_result <- con_contradiction(data, cross_item_metadata)
+  print(contradiction_result$result)
   gc()
   
   # --- Test code for completeness
   print("--- Completeness - crude missingness")
-  print(com_crude_missing(data, item_metadata, cross_item_metadata))
+  crude_missing <- com_crude_missing(data, item_metadata, cross_item_metadata)
+  print(crude_missing$univariate_result)
+  print(crude_missing$multivariate_result)
   print("--- Completeness - qualified missingness")
   print(com_qualified_missing(data, item_metadata))
   gc()
   
   # --- Test code for accuracy
   print("--- Accuracy - Univariate outliers")
-  print(acc_uni_outliers(data, item_metadata))
+  uni_outlier <- acc_uni_outliers(data, item_metadata)
+  print(uni_outlier$result)
 }

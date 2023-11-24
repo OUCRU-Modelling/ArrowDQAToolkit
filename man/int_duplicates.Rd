@@ -8,7 +8,8 @@ int_duplicates(
   data,
   check_all = TRUE,
   remove_dups = FALSE,
-  cross_item_metadata = NULL
+  cross_item_metadata = NULL,
+  plot_result = FALSE
 )
 }
 \arguments{

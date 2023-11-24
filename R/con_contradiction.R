@@ -11,7 +11,7 @@
 #' @export
 #'
 #' @examples
-con_contradiction <- function(data, metadata){
+con_contradiction <- function(data, metadata, plot_result = FALSE){
   # load multivariate variable list and contradictions
   multivariate_vars <- metadata[["multivariate_vars"]]
   contradiction <-  metadata[["contradictions"]]
@@ -54,14 +54,6 @@ con_contradiction <- function(data, metadata){
     
     # --- Get contradicted data
     contradicted_data <- data
-    # expression <- str_split(expression, "&&")[[1]]
-    # for (exp in expression){
-    #   
-    #   exp <- str_interp("contradicted_data <- contradicted_data %>% dplyr::filter(${exp})")
-    #   # contradicted_data <- contradicted_data %>% dplyr::filter(eval(parse_expr(exp)))
-    #   
-    #   eval(parse_expr(exp))
-    # }
     
     # only treat expression as a single one
     # must follow R convention
@@ -80,5 +72,10 @@ con_contradiction <- function(data, metadata){
   
   gc()
   result <- data.frame(varname, rule, no_contradict, percentage)
+  
+  if (plot_result){
+    print(util_graphing_percentage(result, rule, title = "Percentage of contradicted data"))
+  }
+  
   return(list("contradicted_data" = contradicted_dataset, "result" = result))
 }

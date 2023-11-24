@@ -16,7 +16,7 @@
 #' @export
 #'
 #' @examples
-acc_uni_outliers <- function(data, metadata){
+acc_uni_outliers <- function(data, metadata, plot_result = FALSE){
   supported_type = c("integer", "float", "datetime")
   
   var_type <- as.data.frame(metadata[,c("variable", "datatype")])
@@ -48,6 +48,10 @@ acc_uni_outliers <- function(data, metadata){
       # if datatype is datetime, cast to integer before checking outlier
       cast_exp <- str_interp("outliers$${var} <- outliers$${var}$cast(arrow::date32())")
       eval(parse_expr(cast_exp))
+      
+      # also cast variable in original data back to date before next iteration
+      cast_exp <- str_interp("data$${var} <- data$${var}$cast(arrow::date32())")
+      eval(parse_expr(cast_exp))
     }
     
     
@@ -59,8 +63,14 @@ acc_uni_outliers <- function(data, metadata){
     gc()
   }
   
+  result <- data.frame(varnames, no_outliers, percentage)
+  
+  if(plot_result){
+    print(util_graphing_percentage(result, varnames, percentage, title = "Percentage univariate outliers"))
+  }
+  
   return(list(
-    "result" = data.frame(varnames, no_outliers, percentage), 
+    "result" = result, 
     "outliers" = var_outliers
   ))
 }

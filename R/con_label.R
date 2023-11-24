@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' 
-con_label <- function(data, metadata, path=NULL){
+con_label <- function(data, metadata, path=NULL, plot_result = FALSE){
   path <- file.path(path, "item_level.xlsx")
   
   # get variables with defined labels
@@ -74,6 +74,13 @@ con_label <- function(data, metadata, path=NULL){
     gc()
   } 
   
+  
+  result <- data.frame(varname, no_inconsistent_label, percentage_inconsistent, invalid_labels, missing_labels)
+  if (plot_result){
+    print(util_graphing_percentage(result, varname, percentage_inconsistent, 
+                                   title = "Percentage of data with inconsistent labels"))
+  }
+  
   gc()
-  return(data.frame(varname, no_inconsistent_label, percentage_inconsistent, invalid_labels, missing_labels))
+  return()
 }

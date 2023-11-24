@@ -2,9 +2,15 @@
 % Please edit documentation in R/util_graphing.R
 \name{util_graphing_percentage}
 \alias{util_graphing_percentage}
-\title{Title}
+\title{Graphing utility}
 \usage{
-util_graphing_percentage(data, label, percentage)
+util_graphing_percentage(
+  data,
+  label,
+  title = NULL,
+  percentage = percentage,
+  fill = "#87ceeb"
+)
 }
 \arguments{
 \item{data}{\itemize{
@@ -15,10 +21,21 @@ util_graphing_percentage(data, label, percentage)
 \item the column used for labeling (usually varname column)
 }}
 
+\item{title}{\itemize{
+\item title for the plot
+}}
+
 \item{percentage}{\itemize{
 \item column containing percentage to graph
 }}
+
+\item{fill}{\itemize{
+\item fill color for the graph
+}}
+}
+\value{
+histogram of the result
 }
 \description{
-Title
+graph result table using ggplot and plotly
 }

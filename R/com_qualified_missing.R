@@ -9,7 +9,7 @@
 #' @export
 #'
 #' @examples
-com_qualified_missing <- function(data, metadata){
+com_qualified_missing <- function(data, metadata, plot_result = FALSE){
   # get variables with missing labels
   var_label <- as.data.frame(metadata[!is.na(missing_labels), c("variable","datatype", "missing_labels")])
   
@@ -54,5 +54,9 @@ com_qualified_missing <- function(data, metadata){
   }
     
   result <- data.frame(varname, missing_label, no_missing, percentage)
+  
+  if(plot_result){
+    print(util_graphing_percentage(result, varname, title = "Percentage of qualified missing"))
+  }
   return(result)
 }

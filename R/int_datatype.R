@@ -16,39 +16,6 @@ int_datatype <- function(data, metadata, date_format=NULL){
   # test assumes that data is in arrow datatype
   var_type = as.data.frame(metadata[, c("variable", "datatype")])
   
-  # mapping datatype name to its check
-  # checks <- setNames(
-  #   list(
-  #     util_is_integer,
-  #     is.double,
-  #     is.character,
-  #     lubridate::is.timepoint
-  #   ),
-  #   nm = c(
-  #     "integer",
-  #     "float",
-  #     "string",
-  #     "datetime"
-  #   )
-  # )
-  # 
-  # # --- Check whether values can be coerced to specified type
-  # for (row in 1:nrow(var_type)){
-  #   try({
-  #     # get variable name
-  #     varname <- var_type[row, "variable"]
-  #     # get defined type for variable
-  #     type <- var_type[row, "datatype"]
-  # 
-  #     # check type of data
-  #     type_check <- checks[[type]]( as.data.frame(data[varname])[, varname] )
-  # 
-  #     if (!type_check){
-  #       stop(str_interp("Some values of ${varname} cannot be coerced to ${type}"))
-  #     }
-  #   })
-  # }
-  
   # map string to the correct arrow datatype
   cast_type <- setNames(
     list(

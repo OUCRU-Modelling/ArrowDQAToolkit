@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-int_duplicates <- function(data, check_all=TRUE, remove_dups=FALSE, cross_item_metadata=NULL){
+int_duplicates <- function(data, check_all=TRUE, remove_dups=FALSE, cross_item_metadata=NULL, plot_result = FALSE){
   varnames <- character(0)
   no_unique <- character(0)
   percentage_duplicates <- double()
@@ -64,13 +64,18 @@ int_duplicates <- function(data, check_all=TRUE, remove_dups=FALSE, cross_item_m
       }
     
     }
-    # print(distinct_data)
-    
+
     gc()
   }
   
+  result <- data.frame(varnames, no_unique, percentage_duplicates)
+  
+  if(plot_result){
+    print(util_graphing_percentage(result, varnames, percentage_duplicates, title = "Percentage of duplicates"))
+  }
+  
   return(list(
-    "result" = data.frame(varnames, no_unique, percentage_duplicates),
+    "result" = result,
     "duplicates" = duplicates
   ))
 }

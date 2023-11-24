@@ -4,7 +4,7 @@
 \alias{con_label}
 \title{Assess Consistency - Valid labels for categorical labels}
 \usage{
-con_label(data, metadata, path = NULL)
+con_label(data, metadata, path = NULL, plot_result = FALSE)
 }
 \arguments{
 \item{data}{\itemize{

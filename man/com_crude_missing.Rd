@@ -4,7 +4,12 @@
 \alias{com_crude_missing}
 \title{Assess Completeness - Crude Missing}
 \usage{
-com_crude_missing(data, item_metadata, cross_item_metadata)
+com_crude_missing(
+  data,
+  item_metadata,
+  cross_item_metadata,
+  plot_result = FALSE
+)
 }
 \arguments{
 \item{data}{\itemize{

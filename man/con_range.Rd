@@ -4,7 +4,7 @@
 \alias{con_range}
 \title{Assess Consistency - Range of values}
 \usage{
-con_range(data, metadata)
+con_range(data, metadata, plot_result = FALSE)
 }
 \arguments{
 \item{data}{\itemize{

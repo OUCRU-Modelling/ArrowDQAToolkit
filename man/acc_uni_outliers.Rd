@@ -4,7 +4,7 @@
 \alias{acc_uni_outliers}
 \title{Assess Accuracy - Univaritate Outliers}
 \usage{
-acc_uni_outliers(data, metadata)
+acc_uni_outliers(data, metadata, plot_result = FALSE)
 }
 \arguments{
 \item{data}{\itemize{

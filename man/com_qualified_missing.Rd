@@ -4,7 +4,7 @@
 \alias{com_qualified_missing}
 \title{Assess Completeness - Qualified missing}
 \usage{
-com_qualified_missing(data, metadata)
+com_qualified_missing(data, metadata, plot_result = FALSE)
 }
 \arguments{
 \item{data}{\itemize{
