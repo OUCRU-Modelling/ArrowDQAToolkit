@@ -2,7 +2,7 @@
 % Please edit documentation in R/util_mapping_filter_condition.R
 \name{mapping_filter_condition}
 \alias{mapping_filter_condition}
-\title{Mapping value range operator to the built in function}
+\title{Utility function - Mapping value range operator to the built in function}
 \usage{
 mapping_filter_condition(
   data,
@@ -44,5 +44,5 @@ mapping_filter_condition(
 }}
 }
 \description{
-Mapping value range operator to the built in function
+Utility function - Mapping value range operator to the built in function
 }

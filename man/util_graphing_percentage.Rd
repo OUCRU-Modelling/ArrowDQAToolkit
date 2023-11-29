@@ -2,7 +2,7 @@
 % Please edit documentation in R/util_graphing.R
 \name{util_graphing_percentage}
 \alias{util_graphing_percentage}
-\title{Graphing utility}
+\title{Utility function - Graphing utility}
 \usage{
 util_graphing_percentage(
   data,

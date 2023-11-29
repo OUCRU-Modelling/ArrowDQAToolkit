@@ -1,4 +1,4 @@
-#' Custom summary function for arrow object  
+#' Utility function - Custom summary function for arrow object  
 #'
 #' @param data - arrow data table to analyze, can be passed via pipe
 #' @param var - variables to generate summary

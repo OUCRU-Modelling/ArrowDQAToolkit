@@ -1,4 +1,4 @@
-#' Graphing utility
+#' Utility function - Graphing utility
 #'
 #' graph result table using ggplot and plotly
 #' 

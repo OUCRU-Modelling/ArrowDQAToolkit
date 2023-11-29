@@ -2,7 +2,7 @@
 % Please edit documentation in R/util_export.R
 \name{util_export}
 \alias{util_export}
-\title{Export data}
+\title{Utility function - Export data}
 \usage{
 util_export(data, outfile_name = "failed_check_data")
 }

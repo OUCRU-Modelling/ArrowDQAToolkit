@@ -1,4 +1,4 @@
-#' Export data
+#' Utility function - Export data
 #'
 #' Save data that failed the checks as an excel file
 #' @param data - data returned by evaluation functionss

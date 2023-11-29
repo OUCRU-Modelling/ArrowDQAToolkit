@@ -1,4 +1,3 @@
-# util to check integer from dataquier
 #' Utility to check whether a vector only contains integer
 #'
 #' @param x - object to †est 

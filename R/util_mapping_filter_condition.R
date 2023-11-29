@@ -1,4 +1,4 @@
-#' Mapping value range operator to the built in function
+#' Utility function - Mapping value range operator to the built in function
 #'
 #' @param data - arrow data table
 #' @param var - variable for fitlering

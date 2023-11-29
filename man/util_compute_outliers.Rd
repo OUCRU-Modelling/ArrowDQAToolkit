@@ -2,7 +2,7 @@
 % Please edit documentation in R/util_compute_outliers.R
 \name{util_compute_outliers}
 \alias{util_compute_outliers}
-\title{Compute outliers}
+\title{Utility function to compute outliers}
 \usage{
 util_compute_outliers(data, var)
 }
@@ -17,5 +17,5 @@ util_compute_outliers(data, var)
 arrow table containing outliers
 }
 \description{
-Compute outliers
+Utility function to compute outliers
 }

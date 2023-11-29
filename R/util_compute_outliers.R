@@ -1,4 +1,4 @@
-#' Compute outliers
+#' Utility function to compute outliers
 #'
 #' @param data 
 #' @param var - variable to calculate outlier, expected to be a numeric variable
