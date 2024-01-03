@@ -7,7 +7,6 @@
 int_duplicates(
   data,
   check_all = TRUE,
-  remove_dups = FALSE,
   cross_item_metadata = NULL,
   plot_result = FALSE
 )
@@ -19,10 +18,6 @@ int_duplicates(
 
 \item{check_all}{\itemize{
 \item whether to check duplicates over all variables
-}}
-
-\item{remove_dups}{\itemize{
-\item whether to remove duplicates
 }}
 
 \item{cross_item_metadata}{\itemize{
