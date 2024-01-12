@@ -8,9 +8,22 @@ Description: Assess intrinsic quality of an arrow Table.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
-Depends: stats, tidyverse, rlang, readxl, reticulate, data.table, arrow
+Depends: 
+    stats,
+    tidyverse,
+    rlang,
+    readxl,
+    reticulate,
+    data.table,
+    arrow,
+    writexl,
+    R (>= 2.10)
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Suggests: 
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+VignetteBuilder: knitr
+LazyData: true

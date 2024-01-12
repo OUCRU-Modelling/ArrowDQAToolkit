@@ -1,0 +1,102 @@
+---
+title: "Simple workflow demo"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Simple workflow demo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(ArrowDQAToolkit)
+data("sample_dataset")
+
+arrow_data <- as_arrow_table(sample_dataset)
+```
+
+## Read sample metadata
+```{r load metadata}
+metadata_path <- file.path("..", "data", "sample_metadata")
+
+# read item metadata
+item_metadata <- prep_item_metadata(path = metadata_path)
+# read cross item metadata
+cross_item_metadata <- prep_crossitem_metadata(path = metadata_path)
+```
+
+
+## 1. Assess integrity
+```{r check datatype}
+# check and parse to the defined datatype, return the parsed arrow table
+# specify date format if necessary
+arrow_data <- int_datatype(arrow_data, item_metadata)
+```
+
+```{r check duplicates}
+# check for multivariate duplicates
+# return a result dataframe and a list of boolean indicating whether each row is a duplicate
+result <- int_duplicates(arrow_data, cross_item_metadata = cross_item_metadata)
+
+str(result$result)
+str(result$duplicates)
+```
+
+
+## 2. Assess consistency
+```{r check value range}
+# check range of value
+# return a result dataframe
+con_range(arrow_data, item_metadata)
+```
+```{r check labels}
+# check labels 
+# return a result dataframe
+con_label(arrow_data, metadata = item_metadata, path=metadata_path)
+```
+
+
+```{r check contradicting data points}
+# check number of records that contradict with predefined rules
+# return result dataframe and records with contradictions
+contradiction_result <- con_contradiction(arrow_data, metadata = cross_item_metadata)
+
+# view result summary table
+contradiction_result$result
+
+# get contradicted data using the label defined in metadata
+contradiction_result$contradicted_data$date_contradiction %>% compute()
+```
+
+
+## 3. Assess completeness
+```{r check number of missing values}
+# crude missing - count the number of NA data for each feature and any multivariate the user have defined
+# return 2 dataframes for univariate and multivariate check
+result <- com_crude_missing(arrow_data, item_metadata = item_metadata, cross_item_metadata = cross_item_metadata)
+# view result 
+result$univariate_result
+result$multivariate_result
+```
+
+
+## 4. Assess accuracy   
+```{r check number of outliers}
+# check number of Tukey outliers.
+# return result dataframe and records with outliers 
+accuracy_result <- acc_uni_outliers(arrow_data, item_metadata)
+
+# view result table
+accuracy_result$result
+
+# view records with outliers
+accuracy_result$outliers$dob %>% collect()
+```
+
+
